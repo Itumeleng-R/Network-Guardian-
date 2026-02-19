@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Network Guardian Dashboard</title>
+
+    <style>
+        body {
+            background: #121212;
+            color: #e4e4e4;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            width: 90%;
+            margin: auto;
+            padding-top: 20px;
+        }
+
+        .card {
+            background: #1e1e1e;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            color: #4db8ff;
+        }
+
+        .alert {
+            background: #2b2b2b;
+            padding: 10px;
+            margin-bottom: 8px;
+            border-left: 4px solid red;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>NETWORK GUARDIAN — WEB DASHBOARD</h1>
+
+        <div class="card" id="stats-card">
+            <h2>Session Statistics</h2>
+            <p>Total Alerts: <span id="total_alerts">0</span></p>
+            <p>Internal Alerts: <span id="internal_alerts">0</span></p>
+            <p>External Alerts: <span id="external_alerts">0</span></p>
+            <p>Unique IPs: <span id="unique_ips">0</span></p>
+        </div>
+
+        <div class="card">
+            <h2>Recent Alerts</h2>
+            <div id="alerts"></div>
+        </div>
+    </div>
+
+    <!-- SOCKET.IO -->
+    <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+
+    <script>
+        const socket = io();
+
+        // Request updates every second
+        setInterval(() => {
+            socket.emit("request_update", {});
+        }, 1000);
+
+        socket.on("dashboard_update", data => {
+            document.getElementById("total_alerts").innerText = data.stats.total_alerts;
+            document.getElementById("internal_alerts").innerText = data.stats.internal_alerts;
+            document.getElementById("external_alerts").innerText = data.stats.external_alerts;
+            document.getElementById("unique_ips").innerText = data.stats.unique_ips.length;
+
+            let alert_div = document.getElementById("alerts");
+            alert_div.innerHTML = "";
+
+            data.alerts.forEach(a => {
+                alert_div.innerHTML += `<div class="alert">${a}</div>`;
+            });
+        });
+    </script>
+</body>
+</html>

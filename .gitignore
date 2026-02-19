@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+alerts.log
+alerts.csv
+*.env
+.env
+*.db
+venv/
+*.sqlite
+Network_Guardian_README.pdf
