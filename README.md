@@ -126,10 +126,10 @@ Clean dark theme
 
 Severity-based alert dispatch:
 
-Severity	Log	Dashboard	Email	SMS
-High	✅	    ✅	      ✅	    ✅
-Medium	✅	    ✅	      ✅	    ❌
-Low	    ✅       ❌	      ❌     ❌
+Severity	Log	  Dashboard	  Email	  SMS
+High	    ✅	    ✅	      ✅	    ✅
+Medium	  ✅	    ✅	      ✅	    ❌
+Low	      ✅     ❌	      ❌      ❌
 
 Supports:
 
