@@ -170,22 +170,39 @@ Packet behavior patterns
 🏗️ Project Architecture
 Network Guardian
 │
+
 ├── detector.py          # Core IDS engine
+
 ├── logger.py            # Alert logging + CSV
+
 ├── alerter.py           # Email & SMS alert system
+
 ├── firewall.py          # Auto-block IP logic
+
 ├── dashboard.py         # Terminal dashboard
+
 ├── web_dashboard.py     # Web dashboard (Flask)
+
 │
+
 ├── /templates
+
 │     └── dashboard.html # Web UI
+
 ├── / screen grabs
+
 │       └── images.jpeg
+
 │
+
 ├── alerts.log           # Human-readable alerts
+
 ├── alerts.csv           # Structured alert dataset
+
 ├── alerts.txt           # Detection findings
+
 │
+
 └── scanner.py           # Port-scan generator (test tool)
 
 🛠️ Installation
